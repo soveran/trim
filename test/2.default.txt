@@ -1,0 +1,11 @@
+    # def foo
+    #   bar
+    # end
+
+    # def baz
+    #   foo
+    #   bar do
+    #     cat do
+    #     end
+    #   end
+    # end

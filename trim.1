@@ -1,0 +1,67 @@
+.Dd September 1, 2017
+.Dt TRIM 1
+.
+.Sh NAME
+.
+.Nm trim
+.Nd Read from stdin and remove a prefix from each line.
+.
+.Sh SYNOPSIS
+.
+.Nm
+.Op Ar prefix
+.
+.Sh DESCRIPTION
+.
+.Nm
+is a tool for removing prefixes from blocks of text. It reads from
+stdin and proceeds to remove the passed prefix from each line. If
+the prefix argument is omited it defaults to `#`.
+.Pp
+It is intended to be used from text editors that support piping
+blocks of text to external tools.
+.
+.Sh EXAMPLES
+.
+Using it directly from the command line is straightforward:
+.Pp
+.Dl $ cat foo.cr
+.Dl "  # def foo"
+.Dl "  #   puts \"foo\""
+.Dl "  # end"
+.Pp
+.Dl $ cat foo.cr | trim
+.Dl "  def foo"
+.Dl "    puts \"foo\""
+.Dl "  end"
+.Pp
+.Dl $ cat bar.lua
+.Dl "  -- local function answer()"
+.Dl "  --   return(42)"
+.Dl "  -- end"
+.Pp
+.Dl $ cat bar.lua | trim --
+.Dl "  local function answer()"
+.Dl "    return(42)"
+.Dl "  end"
+.Pp
+If you use vis, you can select a block of text and run this command:
+.Pp
+.Dl :|trim
+.Pp
+You can also pass a string to use for the comment:
+.Pp
+.Dl :|trim --
+.Pp
+Usage is similar with vim:
+.Pp
+.Dl :'<,'>!trim
+.Pp
+As vim gives a special meaning to some characters, you may have to
+escape them:
+.Pp
+.Dl :'<,'>!trim \e%
+.Pp
+.
+.Sh AUTHOR
+.An Michel Martens Aq mail@soveran.com
