@@ -31,9 +31,9 @@
 #include <stdio.h>
 
 static int skip(void) {
-	char c;
+	int c;
 
-	while((c = (char) getchar())) {
+	while((c = getchar())) {
 		switch (c) {
 		case EOF:
 			return 1;
@@ -49,10 +49,10 @@ static int skip(void) {
 }
 
 static void strip(char *prefix) {
-	char c;
+	int c;
 	char *s = prefix;
 
-	while((c = (char) getchar()) != EOF) {
+	while((c = getchar()) != EOF) {
 		if (*s == '\0') {
 			if (c != ' ') putchar(c);
 			return;
@@ -69,7 +69,7 @@ static void strip(char *prefix) {
 }
 
 int main(int argc, char **argv) {
-	char c;
+	int c;
 	char *prefix;
 
 	if (argc == 2) {
@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
 		prefix = "#";
 	}
 
-	while((c = (char) getchar()) != EOF) {
+	while((c = getchar()) != EOF) {
 		switch (c) {
 		case '\n':
 		case ' ':
